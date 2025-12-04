@@ -1,0 +1,2395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Science Interactive Quiz | Sinai University</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for Dental/Medical Theme */
+        :root {
+            --primary-white: #FFFFFF;
+            --light-blue: #E6F4F9;
+            --soft-turquoise: #A8D8E6;
+            --medium-blue: #4DA8DA;
+            --dark-blue: #2C7DA0;
+            --accent-blue: #1A5F7A;
+            --success-green: #2E8B57;
+            --error-red: #DC143C;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --shadow-light: rgba(45, 156, 219, 0.15);
+            --shadow-medium: rgba(45, 156, 219, 0.25);
+            --gradient-primary: linear-gradient(135deg, #A8D8E6 0%, #4DA8DA 100%);
+            --gradient-secondary: linear-gradient(135deg, #E6F4F9 0%, #A8D8E6 100%);
+            --excellent-color: #2E8B57;
+            --very-good-color: #4CAF50;
+            --good-color: #8BC34A;
+            --average-color: #FFC107;
+            --poor-color: #F44336;
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-blue);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(168, 216, 230, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(77, 168, 218, 0.1) 0%, transparent 20%);
+        }
+
+        /* Header Styles */
+        .main-header {
+            background: var(--gradient-primary);
+            padding: 1.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 15px var(--shadow-medium);
+            position: relative;
+            overflow: hidden;
+            animation: headerAppear 1s ease-out;
+        }
+
+        @keyframes headerAppear {
+            0% { transform: translateY(-100%); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .main-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            color: var(--primary-white);
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .main-header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Homepage Styles */
+        .homepage {
+            text-align: center;
+            padding: 2rem 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .welcome-section {
+            margin-bottom: 3rem;
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .welcome-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .welcome-section h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--medium-blue);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .welcome-section p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 1.5rem auto;
+            line-height: 1.8;
+        }
+
+        /* Lectures Grid */
+        .lectures-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .lecture-card {
+            background: var(--primary-white);
+            border-radius: 20px;
+            padding: 2.5rem 1.5rem;
+            box-shadow: 0 10px 25px var(--shadow-light);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 280px;
+            border: 2px solid transparent;
+        }
+
+        .lecture-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px var(--shadow-medium);
+            border-color: var(--medium-blue);
+        }
+
+        .lecture-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-primary);
+        }
+
+        .lecture-icon {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .lecture-card:hover .lecture-icon {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .lecture-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-blue);
+        }
+
+        .lecture-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .start-quiz-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(77, 168, 218, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .start-quiz-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(77, 168, 218, 0.5);
+        }
+
+        /* Lecture-specific colors */
+        .lecture-1 .lecture-icon { background: linear-gradient(135deg, #4DA8DA 0%, #1A5F7A 100%); }
+        .lecture-2 .lecture-icon { background: linear-gradient(135deg, #6ACDE6 0%, #2C7DA0 100%); }
+        .lecture-3 .lecture-icon { background: linear-gradient(135deg, #8AD8E6 0%, #3D8DA8 100%); }
+        .lecture-5 .lecture-icon { background: linear-gradient(135deg, #A8E8F0 0%, #4DA8DA 100%); }
+
+        /* Quiz Page Styles */
+        .quiz-container {
+            background: var(--primary-white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 35px var(--shadow-medium);
+            margin: 2rem auto;
+            max-width: 900px;
+            animation: quizAppear 0.8s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes quizAppear {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--light-blue);
+        }
+
+        .quiz-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            color: var(--accent-blue);
+        }
+
+        .quiz-info {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .progress-bar {
+            width: 200px;
+            height: 10px;
+            background: var(--light-blue);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .question-counter {
+            font-weight: 600;
+            color: var(--medium-blue);
+            font-size: 1.1rem;
+        }
+
+        .timer-container {
+            background: var(--light-blue);
+            border-radius: 10px;
+            padding: 0.8rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .timer {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark-blue);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .timer.warning {
+            color: #FF8C00;
+        }
+
+        .timer.danger {
+            color: var(--error-red);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        .question-container {
+            margin-bottom: 2.5rem;
+        }
+
+        .question-text {
+            font-size: 1.4rem;
+            line-height: 1.5;
+            margin-bottom: 1.8rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .options-container {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .option {
+            background: var(--light-blue);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .option:hover {
+            background: #d4edf5;
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            border-color: var(--medium-blue);
+            background: rgba(77, 168, 218, 0.1);
+            box-shadow: 0 5px 15px rgba(77, 168, 218, 0.2);
+        }
+
+        .option.correct {
+            border-color: var(--success-green);
+            background: rgba(46, 139, 87, 0.1);
+            animation: correctGlow 0.5s ease;
+        }
+
+        @keyframes correctGlow {
+            0% { box-shadow: 0 0 5px rgba(46, 139, 87, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(46, 139, 87, 0.8); }
+            100% { box-shadow: 0 0 5px rgba(46, 139, 87, 0.5); }
+        }
+
+        .option.wrong {
+            border-color: var(--error-red);
+            background: rgba(220, 20, 60, 0.1);
+            animation: wrongShake 0.5s ease;
+        }
+
+        @keyframes wrongShake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+
+        .option-label {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--medium-blue);
+            flex-shrink: 0;
+            border: 2px solid var(--medium-blue);
+        }
+
+        .option.selected .option-label {
+            background: var(--medium-blue);
+            color: white;
+        }
+
+        .option.correct .option-label {
+            background: var(--success-green);
+            color: white;
+            border-color: var(--success-green);
+        }
+
+        .option.wrong .option-label {
+            background: var(--error-red);
+            color: white;
+            border-color: var(--error-red);
+        }
+
+        .feedback-container {
+            min-height: 60px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 10px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .feedback-container.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .correct-feedback {
+            color: var(--success-green);
+            background: rgba(46, 139, 87, 0.1);
+        }
+
+        .wrong-feedback {
+            color: var(--error-red);
+            background: rgba(220, 20, 60, 0.1);
+        }
+
+        .next-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(77, 168, 218, 0.4);
+            display: block;
+            margin: 0 auto;
+            width: 200px;
+        }
+
+        .next-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(77, 168, 218, 0.5);
+        }
+
+        .next-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Results Page */
+        .results-container {
+            text-align: center;
+            padding: 3rem 2rem;
+            animation: resultsAppear 1s ease-out;
+        }
+
+        @keyframes resultsAppear {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .results-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            color: var(--accent-blue);
+            margin-bottom: 2rem;
+        }
+
+        .results-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            background: var(--primary-white);
+            border-radius: 15px;
+            padding: 2rem;
+            min-width: 200px;
+            box-shadow: 0 10px 25px var(--shadow-light);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-value {
+            font-size: 3.5rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-correct .stat-value {
+            color: var(--success-green);
+        }
+
+        .stat-wrong .stat-value {
+            color: var(--error-red);
+        }
+
+        .stat-percentage .stat-value {
+            color: var(--medium-blue);
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* Performance Rating */
+        .performance-rating {
+            margin: 2.5rem auto;
+            padding: 2rem;
+            background: var(--primary-white);
+            border-radius: 15px;
+            max-width: 600px;
+            box-shadow: 0 8px 20px var(--shadow-light);
+        }
+
+        .rating-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            color: var(--accent-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .rating-level {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 1rem 0;
+            padding: 0.8rem;
+            border-radius: 10px;
+            animation: fadeInScale 0.5s ease;
+        }
+
+        @keyframes fadeInScale {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .rating-excellent {
+            color: var(--excellent-color);
+            background: rgba(46, 139, 87, 0.1);
+            border: 2px solid var(--excellent-color);
+        }
+
+        .rating-very-good {
+            color: var(--very-good-color);
+            background: rgba(76, 175, 80, 0.1);
+            border: 2px solid var(--very-good-color);
+        }
+
+        .rating-good {
+            color: var(--good-color);
+            background: rgba(139, 195, 74, 0.1);
+            border: 2px solid var(--good-color);
+        }
+
+        .rating-average {
+            color: var(--average-color);
+            background: rgba(255, 193, 7, 0.1);
+            border: 2px solid var(--average-color);
+        }
+
+        .rating-poor {
+            color: var(--poor-color);
+            background: rgba(244, 67, 54, 0.1);
+            border: 2px solid var(--poor-color);
+        }
+
+        .rating-message {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-top: 1rem;
+            line-height: 1.6;
+        }
+
+        .results-actions {
+            margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 180px;
+            justify-content: center;
+        }
+
+        .try-again-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            box-shadow: 0 5px 15px rgba(77, 168, 218, 0.4);
+        }
+
+        .home-btn {
+            background: transparent;
+            color: var(--medium-blue);
+            border: 2px solid var(--medium-blue);
+        }
+
+        .try-again-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(77, 168, 218, 0.5);
+        }
+
+        .home-btn:hover {
+            background: rgba(77, 168, 218, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--accent-blue);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        .footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-primary);
+        }
+
+        .footer p {
+            margin: 0.5rem 0;
+        }
+
+        .university-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Loading Animation */
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+        }
+
+        .spinner {
+            width: 70px;
+            height: 70px;
+            border: 6px solid var(--light-blue);
+            border-top: 6px solid var(--medium-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Back Button */
+        .back-btn {
+            background: transparent;
+            color: var(--medium-blue);
+            border: 2px solid var(--medium-blue);
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .back-btn:hover {
+            background: rgba(77, 168, 218, 0.1);
+            transform: translateX(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-header h1 {
+                font-size: 2rem;
+            }
+            
+            .main-header p {
+                font-size: 1rem;
+            }
+            
+            .lectures-grid {
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .lecture-card {
+                padding: 2rem 1rem;
+                min-height: 250px;
+            }
+            
+            .quiz-container {
+                padding: 1.5rem;
+            }
+            
+            .quiz-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            
+            .quiz-info {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .progress-bar {
+                width: 150px;
+            }
+            
+            .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .option {
+                padding: 1rem;
+            }
+            
+            .results-stats {
+                gap: 1.5rem;
+            }
+            
+            .stat-box {
+                min-width: 150px;
+                padding: 1.5rem 1rem;
+            }
+            
+            .stat-value {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .lectures-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quiz-container {
+                padding: 1rem;
+            }
+            
+            .results-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stat-box {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+
+        /* Hide elements */
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Header -->
+    <header class="main-header">
+        <h1>Computer Science Interactive Quiz</h1>
+        <p>Test your knowledge with 50 questions for each lecture</p>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Homepage -->
+        <div id="homepage" class="homepage">
+            <div class="welcome-section">
+                <h2>Welcome to Computer Science Quiz</h2>
+                <p>Select a lecture below to test your knowledge with 50 multiple-choice questions. Each quiz has a 45-second timer per question and provides instant feedback. Track your progress and improve your Computer Science skills!</p>
+            </div>
+            
+            <div class="lectures-grid">
+                <!-- Lecture 1 Card -->
+                <div class="lecture-card lecture-1" data-lecture="1">
+                    <div class="lecture-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3>Lecture 1</h3>
+                    <p>Introduction to Computer Science, Hardware, Software, Networks, Types of Computers</p>
+                    <button class="start-quiz-btn" onclick="startQuiz(1)">
+                        <i class="fas fa-play-circle"></i> Start Quiz
+                    </button>
+                </div>
+                
+                <!-- Lecture 2 Card -->
+                <div class="lecture-card lecture-2" data-lecture="2">
+                    <div class="lecture-icon">
+                        <i class="fab fa-windows"></i>
+                    </div>
+                    <h3>Lecture 2</h3>
+                    <p>Microsoft Windows: Installation, User Interface, File Management, System Tools</p>
+                    <button class="start-quiz-btn" onclick="startQuiz(2)">
+                        <i class="fas fa-play-circle"></i> Start Quiz
+                    </button>
+                </div>
+                
+                <!-- Lecture 3 Card -->
+                <div class="lecture-card lecture-3" data-lecture="3">
+                    <div class="lecture-icon">
+                        <i class="fas fa-file-word"></i>
+                    </div>
+                    <h3>Lecture 3</h3>
+                    <p>Microsoft Word: Document Formatting, Tables, Pictures, Shapes, Page Layout</p>
+                    <button class="start-quiz-btn" onclick="startQuiz(3)">
+                        <i class="fas fa-play-circle"></i> Start Quiz
+                    </button>
+                </div>
+                
+                <!-- Lecture 5 Card -->
+                <div class="lecture-card lecture-5" data-lecture="5">
+                    <div class="lecture-icon">
+                        <i class="fas fa-file-powerpoint"></i>
+                    </div>
+                    <h3>Lecture 5</h3>
+                    <p>Microsoft PowerPoint: Presentations, Animations, Charts, Slide Shows, Transitions</p>
+                    <button class="start-quiz-btn" onclick="startQuiz(5)">
+                        <i class="fas fa-play-circle"></i> Start Quiz
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Container (Initially Hidden) -->
+        <div id="quiz-container" class="quiz-container hidden">
+            <button class="back-btn" onclick="goHome()">
+                <i class="fas fa-arrow-left"></i> Back to Lectures
+            </button>
+            
+            <div class="quiz-header">
+                <h2 class="quiz-title" id="quiz-title">Lecture Quiz</h2>
+                <div class="quiz-info">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <div class="question-counter">
+                        Question <span id="current-question">1</span> of 50
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timer-container">
+                <i class="fas fa-clock"></i>
+                Time remaining: <span class="timer" id="timer">45s</span>
+            </div>
+            
+            <div class="question-container">
+                <div class="question-text" id="question-text">
+                    Loading question...
+                </div>
+                
+                <div class="options-container" id="options-container">
+                    <!-- Options will be inserted here by JavaScript -->
+                </div>
+                
+                <div class="feedback-container" id="feedback-container">
+                    <!-- Feedback will be inserted here -->
+                </div>
+            </div>
+            
+            <button class="next-btn" id="next-btn" onclick="nextQuestion()" disabled>
+                Next Question <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+
+        <!-- Results Container (Initially Hidden) -->
+        <div id="results-container" class="results-container hidden">
+            <h2 class="results-title">Quiz Results</h2>
+            
+            <div class="results-stats">
+                <div class="stat-box stat-correct">
+                    <div class="stat-value" id="correct-count">0</div>
+                    <div class="stat-label">Correct Answers</div>
+                </div>
+                
+                <div class="stat-box stat-wrong">
+                    <div class="stat-value" id="wrong-count">0</div>
+                    <div class="stat-label">Wrong Answers</div>
+                </div>
+                
+                <div class="stat-box stat-percentage">
+                    <div class="stat-value" id="percentage">0%</div>
+                    <div class="stat-label">Score Percentage</div>
+                </div>
+            </div>
+            
+            <div class="performance-rating">
+                <h3 class="rating-title">Performance Rating</h3>
+                <div class="rating-level" id="rating-level">Average</div>
+                <div class="rating-message" id="rating-message">
+                    You scored <span id="score-display">0</span> out of 50 questions correctly.
+                </div>
+                <div class="rating-message" id="performance-feedback">
+                    Keep practicing to improve your score!
+                </div>
+            </div>
+            
+            <div class="results-actions">
+                <button class="action-btn try-again-btn" onclick="restartQuiz()">
+                    <i class="fas fa-redo"></i> Try Again
+                </button>
+                <button class="action-btn home-btn" onclick="goHome()">
+                    <i class="fas fa-home"></i> Back to Home
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading Container (Initially Hidden) -->
+        <div id="loading-container" class="loading-container hidden">
+            <div class="spinner"></div>
+            <h3>Loading Quiz Questions...</h3>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="university-name">Sinai University - Faculty of Dentistry</p>
+        <p>Designed & Developed by Dr. Mohamed Nabil</p>
+        <p>Computer Science Interactive Quiz Platform</p>
+    </footer>
+
+    <script>
+        // Quiz Data - Complete 50 questions for each lecture
+        const quizData = {
+            1: generateLecture1Questions(),
+            2: generateLecture2Questions(),
+            3: generateLecture3Questions(),
+            5: generateLecture5Questions()
+        };
+
+        // Quiz State Variables
+        let currentLecture = 0;
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let timer;
+        let timeLeft = 45;
+        let userAnswers = [];
+
+        // DOM Elements
+        const homepage = document.getElementById('homepage');
+        const quizContainer = document.getElementById('quiz-container');
+        const resultsContainer = document.getElementById('results-container');
+        const loadingContainer = document.getElementById('loading-container');
+        const quizTitle = document.getElementById('quiz-title');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const feedbackContainer = document.getElementById('feedback-container');
+        const nextBtn = document.getElementById('next-btn');
+        const timerElement = document.getElementById('timer');
+        const currentQuestionElement = document.getElementById('current-question');
+        const progressFill = document.getElementById('progress-fill');
+        const correctCountElement = document.getElementById('correct-count');
+        const wrongCountElement = document.getElementById('wrong-count');
+        const percentageElement = document.getElementById('percentage');
+        const scoreDisplay = document.getElementById('score-display');
+        const ratingLevel = document.getElementById('rating-level');
+        const performanceFeedback = document.getElementById('performance-feedback');
+
+        // Lecture Titles
+        const lectureTitles = {
+            1: "Lecture 1: Introduction to Computer Science",
+            2: "Lecture 2: Microsoft Windows",
+            3: "Lecture 3: Microsoft Word",
+            5: "Lecture 5: Microsoft PowerPoint"
+        };
+
+        // Start Quiz Function
+        function startQuiz(lectureNumber) {
+            currentLecture = lectureNumber;
+            currentQuestionIndex = 0;
+            score = 0;
+            userAnswers = [];
+            
+            // Show loading, hide homepage
+            homepage.classList.add('hidden');
+            loadingContainer.classList.remove('hidden');
+            
+            // Set quiz title
+            quizTitle.textContent = lectureTitles[lectureNumber];
+            
+            // Simulate loading delay
+            setTimeout(() => {
+                loadingContainer.classList.add('hidden');
+                quizContainer.classList.remove('hidden');
+                loadQuestion();
+                startTimer();
+            }, 800);
+        }
+
+        // Load Question
+        function loadQuestion() {
+            // Reset state
+            clearInterval(timer);
+            timeLeft = 45;
+            timerElement.textContent = `${timeLeft}s`;
+            timerElement.className = 'timer';
+            nextBtn.disabled = true;
+            
+            // Update progress
+            currentQuestionElement.textContent = currentQuestionIndex + 1;
+            progressFill.style.width = `${((currentQuestionIndex + 1) / 50) * 100}%`;
+            
+            // Get current question
+            const currentQuestion = quizData[currentLecture][currentQuestionIndex];
+            
+            // Set question text
+            questionText.textContent = currentQuestion.question;
+            
+            // Clear options and feedback
+            optionsContainer.innerHTML = '';
+            feedbackContainer.innerHTML = '';
+            feedbackContainer.classList.remove('show', 'correct-feedback', 'wrong-feedback');
+            
+            // Create options
+            const options = ['A', 'B', 'C', 'D'];
+            options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                optionElement.setAttribute('data-index', index);
+                
+                optionElement.innerHTML = `
+                    <div class="option-label">${option}</div>
+                    <div class="option-text">${currentQuestion.options[index]}</div>
+                `;
+                
+                optionElement.addEventListener('click', () => selectOption(optionElement, index));
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Start timer
+            startTimer();
+        }
+
+        // Select Option
+        function selectOption(optionElement, selectedIndex) {
+            // If already answered, do nothing
+            if (nextBtn.disabled === false) return;
+            
+            // Get correct answer index
+            const correctIndex = quizData[currentLecture][currentQuestionIndex].correctAnswer;
+            
+            // Mark selected option
+            optionElement.classList.add('selected');
+            
+            // Disable all options
+            const allOptions = document.querySelectorAll('.option');
+            allOptions.forEach(opt => {
+                opt.style.pointerEvents = 'none';
+            });
+            
+            // Check if correct
+            const isCorrect = selectedIndex === correctIndex;
+            
+            // Mark correct/wrong
+            if (isCorrect) {
+                optionElement.classList.add('correct');
+                score++;
+                showFeedback('Correct!', true);
+                playSound('correct');
+            } else {
+                optionElement.classList.add('wrong');
+                // Also show the correct answer
+                allOptions[correctIndex].classList.add('correct');
+                showFeedback(`Wrong! The correct answer is ${String.fromCharCode(65 + correctIndex)}.`, false);
+                playSound('wrong');
+            }
+            
+            // Store user answer
+            userAnswers.push({
+                questionIndex: currentQuestionIndex,
+                selected: selectedIndex,
+                correct: correctIndex,
+                isCorrect: isCorrect
+            });
+            
+            // Enable next button
+            nextBtn.disabled = false;
+            
+            // Stop timer
+            clearInterval(timer);
+        }
+
+        // Show Feedback
+        function showFeedback(message, isCorrect) {
+            feedbackContainer.textContent = message;
+            feedbackContainer.classList.add('show');
+            feedbackContainer.classList.add(isCorrect ? 'correct-feedback' : 'wrong-feedback');
+        }
+
+        // Next Question
+        function nextQuestion() {
+            currentQuestionIndex++;
+            
+            if (currentQuestionIndex < 50) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        // Show Results
+        function showResults() {
+            quizContainer.classList.add('hidden');
+            resultsContainer.classList.remove('hidden');
+            
+            const wrongCount = 50 - score;
+            const percentage = Math.round((score / 50) * 100);
+            
+            // Update stats
+            correctCountElement.textContent = score;
+            wrongCountElement.textContent = wrongCount;
+            percentageElement.textContent = `${percentage}%`;
+            scoreDisplay.textContent = score;
+            
+            // Determine performance rating
+            let rating, ratingClass, feedback;
+            
+            if (percentage >= 90) {
+                rating = "Excellent!";
+                ratingClass = "rating-excellent";
+                feedback = "Outstanding performance! You have excellent knowledge of this topic.";
+            } else if (percentage >= 80) {
+                rating = "Very Good!";
+                ratingClass = "rating-very-good";
+                feedback = "Great job! You have a strong understanding of this material.";
+            } else if (percentage >= 70) {
+                rating = "Good!";
+                ratingClass = "rating-good";
+                feedback = "Good work! You have a solid grasp of the concepts.";
+            } else if (percentage >= 60) {
+                rating = "Average";
+                ratingClass = "rating-average";
+                feedback = "Not bad! Review the material to improve your understanding.";
+            } else {
+                rating = "Needs Improvement";
+                ratingClass = "rating-poor";
+                feedback = "Keep practicing! Review the lecture material and try again.";
+            }
+            
+            // Update rating display
+            ratingLevel.textContent = rating;
+            ratingLevel.className = `rating-level ${ratingClass}`;
+            performanceFeedback.textContent = feedback;
+            
+            // Add celebration for good scores
+            if (percentage >= 80) {
+                confettiEffect();
+            }
+        }
+
+        // Restart Quiz
+        function restartQuiz() {
+            resultsContainer.classList.add('hidden');
+            startQuiz(currentLecture);
+        }
+
+        // Go Home
+        function goHome() {
+            quizContainer.classList.add('hidden');
+            resultsContainer.classList.add('hidden');
+            loadingContainer.classList.add('hidden');
+            homepage.classList.remove('hidden');
+            clearInterval(timer);
+        }
+
+        // Timer Function
+        function startTimer() {
+            clearInterval(timer);
+            timeLeft = 45;
+            updateTimerDisplay();
+            
+            timer = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    autoNextQuestion();
+                }
+            }, 1000);
+        }
+
+        // Update Timer Display
+        function updateTimerDisplay() {
+            timerElement.textContent = `${timeLeft}s`;
+            
+            // Change color based on time left
+            if (timeLeft <= 10) {
+                timerElement.classList.add('danger');
+            } else if (timeLeft <= 20) {
+                timerElement.classList.add('warning');
+            }
+        }
+
+        // Auto Next Question when timer runs out
+        function autoNextQuestion() {
+            // Mark as wrong if not answered
+            if (nextBtn.disabled) {
+                const correctIndex = quizData[currentLecture][currentQuestionIndex].correctAnswer;
+                const allOptions = document.querySelectorAll('.option');
+                
+                // Show correct answer
+                allOptions[correctIndex].classList.add('correct');
+                showFeedback(`Time's up! The correct answer is ${String.fromCharCode(65 + correctIndex)}.`, false);
+                
+                // Store user answer (as not answered)
+                userAnswers.push({
+                    questionIndex: currentQuestionIndex,
+                    selected: null,
+                    correct: correctIndex,
+                    isCorrect: false
+                });
+                
+                // Enable next button
+                nextBtn.disabled = false;
+                playSound('wrong');
+            }
+        }
+
+        // Sound Effects
+        function playSound(type) {
+            // In a real implementation, you would use actual sound files
+            console.log(`Playing ${type} sound`);
+        }
+
+        // Confetti Effect for Good Score
+        function confettiEffect() {
+            const confettiContainer = document.createElement('div');
+            confettiContainer.style.position = 'fixed';
+            confettiContainer.style.top = '0';
+            confettiContainer.style.left = '0';
+            confettiContainer.style.width = '100%';
+            confettiContainer.style.height = '100%';
+            confettiContainer.style.pointerEvents = 'none';
+            confettiContainer.style.zIndex = '9999';
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'absolute';
+                confetti.style.fontSize = '24px';
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.top = '-30px';
+                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                confetti.textContent = ['🎉', '🎊', '🏆', '⭐', '👍'][Math.floor(Math.random() * 5)];
+                
+                confettiContainer.appendChild(confetti);
+                
+                // Add CSS for animation
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes fall {
+                        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+                        100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            document.body.appendChild(confettiContainer);
+            
+            // Remove after animation
+            setTimeout(() => {
+                document.body.removeChild(confettiContainer);
+            }, 3000);
+        }
+
+        // Generate Questions for Lecture 1 (50 questions)
+        function generateLecture1Questions() {
+            return [
+                {
+                    question: "Which type of computer is often connected to many individual PCs over a network?",
+                    options: ["A) PDA", "B) Laptop", "C) Mainframe", "D) Personal Computer"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Which computer is portable and generally more expensive than a PC?",
+                    options: ["A) Mainframe", "B) PDA", "C) Laptop", "D) Desktop"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Which device is typically used by doctors and home users?",
+                    options: ["A) Mainframe", "B) Personal Computer", "C) PDA", "D) Server"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What is a PDA?",
+                    options: ["A) Portable Desktop Assistant", "B) Personal Digital Assistant", "C) Personal Data Assistant", "D) Portable Data Access"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which computer has much smaller storage capacity compared to a PC?",
+                    options: ["A) Laptop", "B) PDA", "C) Mainframe", "D) Server"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which component is NOT an input device?",
+                    options: ["A) Mouse", "B) Keyboard", "C) Light pen", "D) Speaker"],
+                    correctAnswer: 3
+                },
+                {
+                    question: "Which device can be used to output data from a computer?",
+                    options: ["A) Mouse", "B) Keyboard", "C) Speakers", "D) Light pen"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Which device is used to input data into a computer?",
+                    options: ["A) Monitor", "B) Mouse", "C) Printer", "D) Plotter"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What is the smallest unit of storage?",
+                    options: ["A) Byte", "B) Bit", "C) Kilobyte", "D) Gigabyte"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How many bits are in one byte?",
+                    options: ["A) 4", "B) 8", "C) 16", "D) 1024"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "1 Kilobyte equals how many bytes?",
+                    options: ["A) 1000", "B) 1024", "C) 512", "D) 2048"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which memory is volatile?",
+                    options: ["A) ROM", "B) RAM", "C) Hard Disk", "D) Flash Memory"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which of the following is a secondary storage device?",
+                    options: ["A) RAM", "B) Hard Disk", "C) Processor", "D) ROM"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which of these is part of the CPU?",
+                    options: ["A) Hard Disk", "B) CD-ROM", "C) Processor", "D) Flash Memory"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Which is a type of operating system?",
+                    options: ["A) DOS", "B) Windows", "C) Linux", "D) All of the above"],
+                    correctAnswer: 3
+                },
+                {
+                    question: "What is the main task of an operating system?",
+                    options: ["A) Start up the computer", "B) Control hardware", "C) Enable other programs to run", "D) All of the above"],
+                    correctAnswer: 3
+                },
+                {
+                    question: "Which operating system is developed by Apple?",
+                    options: ["A) Windows", "B) Linux", "C) Mac", "D) Unix"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "What does LAN stand for?",
+                    options: ["A) Large Area Network", "B) Local Area Network", "C) Linked Access Network", "D) Long Area Network"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What does WAN stand for?",
+                    options: ["A) Wide Area Network", "B) Wireless Area Network", "C) Wired Area Network", "D) Web Access Network"],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Which network type connects computers within a company?",
+                    options: ["A) WAN", "B) LAN", "C) MAN", "D) PAN"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which storage device uses magnetic disks?",
+                    options: ["A) CD-ROM", "B) Hard Disk", "C) Flash Memory", "D) RAM"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which is an optical storage device?",
+                    options: ["A) Hard Disk", "B) CD-ROM", "C) RAM", "D) Flash Memory"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which is a portable storage device?",
+                    options: ["A) Flash Memory", "B) ROM", "C) RAM", "D) Hard Disk"],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Which memory is considered main memory?",
+                    options: ["A) Hard Disk", "B) ROM", "C) CD-ROM", "D) Flash Memory"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which computer type is most powerful?",
+                    options: ["A) Laptop", "B) PDA", "C) PC", "D) Mainframe"],
+                    correctAnswer: 3
+                },
+                {
+                    question: "What is the speed of the CPU measured in?",
+                    options: ["A) Bytes", "B) Megahertz/Gigahertz", "C) Kilobytes", "D) Bits per second"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which device is NOT a storage device?",
+                    options: ["A) Hard Disk", "B) CD-ROM", "C) Mouse", "D) Flash Memory"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Which is a characteristic of a laptop?",
+                    options: ["A) Very powerful", "B) Connected to many PCs", "C) Portable", "D) Used only in banks"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Which is a typical user of a mainframe computer?",
+                    options: ["A) Home users", "B) Banks", "C) Doctors", "D) Students"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which is NOT an output device?",
+                    options: ["A) Monitor", "B) Printer", "C) Keyboard", "D) Speakers"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "What is the function of an operating system related to files?",
+                    options: ["A) Create them", "B) Delete them", "C) Copy them", "D) All of the above"],
+                    correctAnswer: 3
+                },
+                {
+                    question: "Which software enables the computer hardware to work?",
+                    options: ["A) Application Software", "B) Operating System", "C) Word Processor", "D) Browser"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which is an example of application software?",
+                    options: ["A) Windows", "B) Word Processor", "C) Linux", "D) DOS"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What is a network?",
+                    options: ["A) A single computer", "B) Two or more connected computers", "C) A type of software", "D) A storage device"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What do computers share in a network?",
+                    options: ["A) Files", "B) Printers", "C) Storage", "D) All of the above"],
+                    correctAnswer: 3
+                },
+                {
+                    question: "Which computer is small enough to hold in the palm of your hand?",
+                    options: ["A) Laptop", "B) PDA", "C) Mainframe", "D) Desktop"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which storage unit comes after Gigabyte?",
+                    options: ["A) Kilobyte", "B) Megabyte", "C) Terabyte", "D) Bit"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Which is a volatile storage?",
+                    options: ["A) Hard Disk", "B) CD-ROM", "C) RAM", "D) Flash Memory"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Which is NOT a computer type?",
+                    options: ["A) Laptop", "B) Smartphone", "C) Mainframe", "D) PDA"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which is a characteristic of a mainframe?",
+                    options: ["A) Used by home users", "B) Processes large amounts of data", "C) Cheapest type", "D) Smallest size"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which device is both input and output?",
+                    options: ["A) Touchscreen", "B) Printer", "C) Speaker", "D) Keyboard"],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Which is a type of operating system mentioned in the lecture?",
+                    options: ["A) Android", "B) Unix", "C) iOS", "D) Chrome OS"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which memory is non-volatile?",
+                    options: ["A) RAM", "B) ROM", "C) Cache", "D) Register"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which is NOT a function of the operating system?",
+                    options: ["A) Start the computer", "B) Control hardware", "C) Type documents", "D) Manage files"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Which computer component is measured in GHz?",
+                    options: ["A) RAM", "B) Hard Disk", "C) CPU", "D) Monitor"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Which is the largest storage capacity unit listed?",
+                    options: ["A) Kilobyte", "B) Megabyte", "C) Gigabyte", "D) Byte"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Which is an example of a network resource?",
+                    options: ["A) Printer", "B) Mouse", "C) CPU", "D) Monitor"],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Which computer is least expensive among the listed?",
+                    options: ["A) Mainframe", "B) Laptop", "C) Personal Computer", "D) PDA"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Which is NOT a secondary storage device?",
+                    options: ["A) Hard Disk", "B) CD-ROM", "C) RAM", "D) Flash Memory"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Which device is used to store data permanently?",
+                    options: ["A) RAM", "B) Hard Disk", "C) CPU", "D) Monitor"],
+                    correctAnswer: 1
+                }
+            ];
+        }
+
+        // Generate Questions for Lecture 2 (50 questions)
+        function generateLecture2Questions() {
+            return [
+                {
+                    question: "What does the 'Upgrade' installation option in Windows do?",
+                    options: ["A) Deletes all files and programs", "B) Keeps your files, settings, and programs", "C) Installs Windows on a new partition", "D) Only updates the operating system files"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What is a 'Custom' installation in Windows also known as?",
+                    options: ["A) Upgrade installation", "B) Clean installation", "C) Repair installation", "D) Network installation"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which of the following is NOT part of the Windows user interface?",
+                    options: ["A) Taskbar", "B) Icons", "C) Hard disk drive", "D) Start Menu"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Where can you find the 'Control Box' of a window?",
+                    options: ["A) On the desktop", "B) In the system tray", "C) On the title bar", "D) In the taskbar"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "What is the main purpose of Windows User Interface Management?",
+                    options: ["A) To manage hardware devices", "B) To make computer interaction easy without typing commands", "C) To install new programs", "D) To format hard disks"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How can you run a program from the Start Menu?",
+                    options: ["A) By typing in the search box", "B) By selecting it from 'All Programs'", "C) By right-clicking the desktop", "D) By pressing Ctrl + Alt + Delete"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which option in the Control Panel is used to remove a program?",
+                    options: ["A) System and Security", "B) Programs and Features", "C) Hardware and Sound", "D) Network and Internet"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "To search for files or folders in Windows, which key can you press?",
+                    options: ["A) F1", "B) F3", "C) F5", "D) F12"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which wildcard is used to search for files starting with 'A'?",
+                    options: ["A) A?", "B) A*", "C) *A*", "D) ?A"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How can you search for all PDF files on your computer?",
+                    options: ["A) *.doc", "B) *.pdf", "C) *pdf*", "D) ?.pdf"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which search operator finds files larger than 1 MB?",
+                    options: ["A) size>1MB", "B) size:>1MB", "C) >1MB", "D) large:1MB"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How can you find folders only in Windows Search?",
+                    options: ["A) folder:yes", "B) kind:folder", "C) type:folder", "D) search:folders"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which tool scans the hard drive for errors and bad sectors?",
+                    options: ["A) Disk Defragmenter", "B) Scan Disk", "C) Disk Cleanup", "D) Format Tool"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What is the purpose of Disk Defragmentation?",
+                    options: ["A) To delete unnecessary files", "B) To reorganize files for faster access", "C) To check for viruses", "D) To backup data"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Where can you change the properties of the mouse?",
+                    options: ["A) My Computer", "B) Control Panel", "C) Task Manager", "D) Device Manager"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you change the calendar type in Windows?",
+                    options: ["A) From My Documents", "B) From Control Panel > Region and Language", "C) From the Start Menu", "D) From the Desktop"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What is the minimum RAM requirement for Windows 7?",
+                    options: ["A) 512 MB", "B) 1 GB", "C) 2 GB", "D) 3 MB"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "To organize files on a hard disk, you should create:",
+                    options: ["A) Accounts", "B) Folders", "C) Partitions", "D) Shortcuts"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Where is the 'Control Box' located in a window?",
+                    options: ["A) Menu Bar", "B) Tool Bar", "C) Title Bar", "D) Address Bar"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "How can you add a program to the Start Menu?",
+                    options: ["A) Copy and Paste", "B) Drag and Drop", "C) Cut and Paste", "D) Double-click"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which Start Menu option is used to run the Paint program by typing its name?",
+                    options: ["A) Search", "B) Help and Support", "C) Run", "D) Documents"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "To change the calendar type, you must go to:",
+                    options: ["A) My Computer", "B) Search Window", "C) My Documents", "D) Control Panel"],
+                    correctAnswer: 3
+                },
+                {
+                    question: "What does Disk Cleanup do?",
+                    options: ["A) Scans for viruses", "B) Deletes unnecessary files", "C) Defragments the hard drive", "D) Formats the disk"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which option is NOT a main task of Windows?",
+                    options: ["A) User Interface Management", "B) Running Applications", "C) Creating websites", "D) File and Folder Management"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Which of these is a secondary storage device?",
+                    options: ["A) RAM", "B) Hard Disk Drive", "C) Processor", "D) Mouse"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which Windows tool can fix file fragmentation?",
+                    options: ["A) Scan Disk", "B) Disk Defragmenter", "C) Disk Cleanup", "D) System Restore"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What does the 'Run' dialog box allow you to do?",
+                    options: ["A) Change desktop background", "B) Launch programs by typing their names", "C) Delete files", "D) Format disks"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which of the following is a system tool in Windows?",
+                    options: ["A) Paint", "B) Disk Defragmenter", "C) WordPad", "D) Calculator"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How can you create a new folder on the desktop?",
+                    options: ["A) Press Ctrl + N", "B) Right-click > New > Folder", "C) Drag a file to the desktop", "D) Use the Run dialog"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which key combination opens File Explorer?",
+                    options: ["A) Ctrl + E", "B) Windows + E", "C) Alt + E", "D) Shift + E"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What does 'datemodified:this month' search for?",
+                    options: ["A) Files created this month", "B) Files modified this month", "C) Files opened this month", "D) Files deleted this month"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which Windows feature shows open applications and system info?",
+                    options: ["A) Desktop", "B) Taskbar", "C) Start Menu", "D) Control Panel"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What is the 'Desktop' in Windows?",
+                    options: ["A) A physical desk", "B) The main screen with icons and wallpaper", "C) A type of computer", "D) A program menu"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which tool helps remove unused programs?",
+                    options: ["A) Disk Cleanup", "B) Programs and Features", "C) System Restore", "D) Device Manager"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What is the purpose of the 'Scan Disk' utility?",
+                    options: ["A) To speed up the computer", "B) To find and fix disk errors", "C) To delete temporary files", "D) To install new software"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which of these is NOT a step in uninstalling a program?",
+                    options: ["A) Open Control Panel", "B) Select the program", "C) Click 'Repair'", "D) Click 'Remove'"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Which search example finds files with 'report' anywhere in the name?",
+                    options: ["A) report*", "B) *report", "C) *report*", "D) ?report?"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "What is the first step in formatting a hard disk partition?",
+                    options: ["A) Open Control Panel", "B) Right-click the partition and select 'Format'", "C) Run Disk Defragmenter", "D) Open My Documents"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which Windows component manages overlapping windows?",
+                    options: ["A) Task Manager", "B) User Interface Management", "C) File Explorer", "D) Control Panel"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you change mouse properties?",
+                    options: ["A) Start > Settings > Devices", "B) Start > Settings > Control Panel > Mouse", "C) Right-click desktop > Personalize", "D) Open My Computer"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which option is used to run a program from 'Program Files'?",
+                    options: ["A) Open My Documents", "B) Navigate to the folder and double-click the executable", "C) Use the Run dialog only", "D) Press F3"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What does the 'Region and Language' dialog allow you to change?",
+                    options: ["A) Calendar type, date format, and currency", "B) Screen resolution", "C) Desktop icons", "D) User accounts"],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Which is NOT a valid Windows search example?",
+                    options: ["A) *.pdf", "B) size:>1MB", "C) file:report", "D) kind:folder"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "What does the 'Taskbar' display?",
+                    options: ["A) Only the Start Menu", "B) Open apps, system icons, and notifications", "C) Only the time", "D) Desktop background"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which tool reorganizes file fragments on a hard drive?",
+                    options: ["A) Disk Defragmenter", "B) Scan Disk", "C) Disk Cleanup", "D) Format"],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Which of the following is NOT a Windows version?",
+                    options: ["A) Windows XP", "B) Windows 10", "C) Windows OS X", "D) Windows Vista"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "How can you open the 'Search' window quickly?",
+                    options: ["A) Press Ctrl + F", "B) Press F3", "C) Press Alt + S", "D) Press Windows + S"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which of these is a hardware management task in Windows?",
+                    options: ["A) Creating folders", "B) Managing printers and keyboards", "C) Running applications", "D) Changing desktop wallpaper"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What is the purpose of the 'Run' command in the Start Menu?",
+                    options: ["A) To shut down the computer", "B) To execute a program by typing its name", "C) To open Control Panel", "D) To format disks"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which option allows you to change the mouse pointer speed?",
+                    options: ["A) Mouse Properties dialog", "B) Keyboard Properties", "C) Display Settings", "D) System Properties"],
+                    correctAnswer: 0
+                }
+            ];
+        }
+
+        // Generate Questions for Lecture 3 (50 questions)
+        function generateLecture3Questions() {
+            return [
+                {
+                    question: "Which Microsoft Office component is used for creating text documents?",
+                    options: ["A) Microsoft Excel", "B) Microsoft Word", "C) Microsoft PowerPoint", "D) Microsoft Access"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How can you start MS Word from the Run dialog?",
+                    options: ["A) Type 'Word'", "B) Type 'WinWord'", "C) Type 'MSWord'", "D) Type 'OfficeWord'"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Where can you find the Quick Access Toolbar in Word?",
+                    options: ["A) At the bottom of the window", "B) At the top-left of the window", "C) On the right sidebar", "D) In the View tab"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which tab contains options for formatting text (font, size, color)?",
+                    options: ["A) Insert", "B) Page Layout", "C) Home", "D) View"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "How do you open the Font dialog box to format text?",
+                    options: ["A) Double-click the text", "B) Right-click and select Font", "C) Click the Dialog Box Launcher in the Font group", "D) Press Ctrl + F"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Which option is used to change the page orientation?",
+                    options: ["A) Home tab", "B) Page Layout tab", "C) Insert tab", "D) Review tab"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How can you add a background color to a page?",
+                    options: ["A) From the Home tab", "B) From the Page Background group in Page Layout", "C) From the Insert tab", "D) From the View tab"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Where do you find the option to add a page border?",
+                    options: ["A) Home > Borders", "B) Page Layout > Page Background > Page Borders", "C) Insert > Shapes", "D) Design > Borders"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you insert page numbers in a Word document?",
+                    options: ["A) Home tab", "B) Insert tab > Header & Footer group", "C) Page Layout tab", "D) View tab"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What is the keyboard shortcut to insert a page break?",
+                    options: ["A) Ctrl + B", "B) Ctrl + Enter", "C) Ctrl + P", "D) Ctrl + Shift + Enter"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you create a table in Word?",
+                    options: ["A) Home > Table", "B) Insert > Table", "C) Page Layout > Table", "D) View > Table"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which tab appears when you select a table, allowing you to add rows or columns?",
+                    options: ["A) Design tab", "B) Layout tab", "C) Format tab", "D) Table tab"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How can you merge cells in a table?",
+                    options: ["A) Right-click > Merge", "B) Layout tab > Merge Cells", "C) Design tab > Merge", "D) Home tab > Merge"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Where can you change the text direction inside a table cell?",
+                    options: ["A) Home tab", "B) Layout tab", "C) Insert tab", "D) Design tab"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you insert a picture from a file?",
+                    options: ["A) Home > Picture", "B) Insert > Illustrations > Picture", "C) Page Layout > Picture", "D) View > Picture"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which group under the Insert tab contains Shapes?",
+                    options: ["A) Tables", "B) Illustrations", "C) Text", "D) Links"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How can you change the fill color of a shape?",
+                    options: ["A) Home tab", "B) Format tab (under Drawing Tools)", "C) Insert tab", "D) Design tab"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which option allows you to add shadow effects to a shape?",
+                    options: ["A) Shape Style", "B) Shape Effects", "C) Shape Fill", "D) Shape Outline"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "To save a file quickly, you can click the Save button on the:",
+                    options: ["A) Home tab", "B) Quick Access Toolbar", "C) Insert tab", "D) Status bar"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Where do you open the Page Setup dialog to change margins?",
+                    options: ["A) Format tab", "B) Page Layout tab", "C) Insert tab", "D) Home tab"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you apply subscript formatting (e.g., x₃)?",
+                    options: ["A) Underline button", "B) Font Color button", "C) Font dialog box (Subscript option)", "D) Effects button"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "To repeat the first row of a table as a header on each page, you select:",
+                    options: ["A) Properties", "B) Repeat as Header Row", "C) Border and Shading", "D) Merge Cells"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which tab is used to change the border color of a shape?",
+                    options: ["A) Page Layout", "B) Insert", "C) Format (under Drawing Tools)", "D) Home"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "What is the purpose of the Ruler in Word?",
+                    options: ["A) To measure page length", "B) To adjust margins, indents, and tabs", "C) To align pictures", "D) To change font size"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which view allows you to see how the document will look when printed?",
+                    options: ["A) Draft view", "B) Print Layout view", "C) Web Layout view", "D) Outline view"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you access the Zoom control in Word?",
+                    options: ["A) Home tab", "B) Slider in the bottom-right corner", "C) Insert tab", "D) Page Layout tab"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which option is used to change the style of a table?",
+                    options: ["A) Layout tab", "B) Design tab (Table Styles)", "C) Format tab", "D) Home tab"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How can you insert a symbol (e.g., ©, ®) in a document?",
+                    options: ["A) Home > Symbol", "B) Insert > Symbol", "C) Page Layout > Symbol", "D) View > Symbol"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What does the 'WordArt' feature allow you to do?",
+                    options: ["A) Insert tables", "B) Create stylized text with effects", "C) Add page borders", "D) Insert clip art"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you insert a text box?",
+                    options: ["A) Home > Text Box", "B) Insert > Text Box", "C) Page Layout > Text Box", "D) Design > Text Box"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which option is used to change line spacing?",
+                    options: ["A) Home > Paragraph group", "B) Page Layout > Paragraph", "C) Insert > Spacing", "D) View > Spacing"],
+                    correctAnswer: 0
+                },
+                {
+                    question: "How can you add a watermark to a document?",
+                    options: ["A) Insert > Watermark", "B) Design > Watermark", "C) Page Layout > Watermark", "D) View > Watermark"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which keyboard shortcut is used to bold text?",
+                    options: ["A) Ctrl + I", "B) Ctrl + B", "C) Ctrl + U", "D) Ctrl + D"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What does the 'Format Painter' tool do?",
+                    options: ["A) Changes page color", "B) Copies formatting from one text to another", "C) Inserts pictures", "D) Creates tables"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you insert a hyperlink?",
+                    options: ["A) Home > Link", "B) Insert > Hyperlink", "C) Page Layout > Hyperlink", "D) View > Hyperlink"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Where can you check the word count of a document?",
+                    options: ["A) Home tab", "B) Status bar at the bottom", "C) Insert tab", "D) Review tab"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you change the case of selected text (e.g., to UPPERCASE)?",
+                    options: ["A) Home > Font group > Change Case", "B) Page Layout > Change Case", "C) Insert > Text > Case", "D) View > Case"],
+                    correctAnswer: 0
+                },
+                {
+                    question: "What is the purpose of the 'Thesaurus' feature?",
+                    options: ["A) To check spelling", "B) To find synonyms", "C) To translate text", "D) To count words"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How can you insert a footnote?",
+                    options: ["A) Home > Footnote", "B) References > Insert Footnote", "C) Insert > Footnote", "D) View > Footnote"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which option allows you to track changes in a document?",
+                    options: ["A) Home > Track Changes", "B) Review > Track Changes", "C) Insert > Track Changes", "D) View > Track Changes"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you adjust the width of a table column?",
+                    options: ["A) Drag the column boundary in the ruler", "B) Drag the column border in the table", "C) Use the Layout tab > Cell Size", "D) All of the above"],
+                    correctAnswer: 3
+                },
+                {
+                    question: "Where is the option to add a drop cap?",
+                    options: ["A) Home tab", "B) Insert tab > Drop Cap", "C) Page Layout tab", "D) Design tab"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you insert a page break from the Insert tab?",
+                    options: ["A) Insert > Break", "B) Insert > Pages > Page Break", "C) Insert > Layout > Break", "D) Insert > Section Break"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What is the purpose of the 'Navigation Pane'?",
+                    options: ["A) To insert pictures", "B) To quickly move through headings and pages", "C) To format text", "D) To check grammar"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How can you change the document view to 'Read Mode'?",
+                    options: ["A) Home > Read Mode", "B) View > Read Mode", "C) Insert > Read Mode", "D) Page Layout > Read Mode"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which feature allows you to automatically format a document with a consistent style?",
+                    options: ["A) Themes", "B) Styles (in the Home tab)", "C) Templates", "D) Format Painter"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you insert a comment in a document?",
+                    options: ["A) Home > Comment", "B) Review > New Comment", "C) Insert > Comment", "D) View > Comment"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Where can you find the option to change the paper size?",
+                    options: ["A) Home > Size", "B) Page Layout > Size", "C) Insert > Size", "D) Design > Size"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you insert a cover page?",
+                    options: ["A) Home > Cover Page", "B) Insert > Cover Page", "C) Page Layout > Cover Page", "D) View > Cover Page"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What is the function of the 'Show/Hide ¶' button?",
+                    options: ["A) Hides the ribbon", "B) Shows non-printing characters (spaces, tabs, paragraph marks)", "C) Hides the ruler", "D) Shows formatting marks only"],
+                    correctAnswer: 1
+                }
+            ];
+        }
+
+        // Generate Questions for Lecture 5 (50 questions)
+        function generateLecture5Questions() {
+            return [
+                {
+                    question: "How can you run Microsoft PowerPoint from the Run dialog?",
+                    options: ["A) Type 'PPT'", "B) Type 'POWERPNT'", "C) Type 'MS POWERPOINT'", "D) Type 'POWERPOINT'"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which tab in PowerPoint contains options for adding animations?",
+                    options: ["A) Home", "B) Insert", "C) Animations", "D) View"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Which of the following is NOT a main task of PowerPoint?",
+                    options: ["A) Insert objects into slides", "B) Format slides", "C) Create spreadsheets", "D) Add animation"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "How do you insert a text box into a slide?",
+                    options: ["A) Insert > Text Box", "B) Click on a text box placeholder or draw one", "C) Home > Text Box", "D) Design > Text Box"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Where is the WordArt feature located?",
+                    options: ["A) Home tab", "B) Insert tab", "C) Design tab", "D) Animations tab"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which group under the Insert tab allows you to add a chart?",
+                    options: ["A) Tables", "B) Illustrations", "C) Text", "D) Media"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "To insert a picture, which tab do you use?",
+                    options: ["A) Home", "B) Insert", "C) Design", "D) View"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What happens when you change data in the Excel sheet linked to a PowerPoint chart?",
+                    options: ["A) Nothing", "B) The chart in PowerPoint updates automatically", "C) The Excel file closes", "D) You must recreate the chart"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you edit the data of an existing chart in PowerPoint?",
+                    options: ["A) Double-click the chart", "B) Select the chart > Design tab > Edit Data", "C) Right-click > Edit Text", "D) Insert > Edit Data"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How can you change the background of a slide?",
+                    options: ["A) Design > Background Styles", "B) Right-click slide > Format Background", "C) Insert > Background", "D) View > Background"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which option applies a background to all slides?",
+                    options: ["A) Apply", "B) Apply to All", "C) Close", "D) Reset Background"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Where do you change the layout of a slide?",
+                    options: ["A) Home > Layout", "B) Right-click slide > Layout", "C) Insert > Layout", "D) Design > Slide Layout"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you insert a new slide?",
+                    options: ["A) Ctrl + N", "B) Home > New Slide", "C) Insert > New Slide", "D) Right-click > New Slide"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which option duplicates a selected slide?",
+                    options: ["A) Copy and Paste", "B) Home > New Slide > Duplicate Selected Slides", "C) Insert > Duplicate Slide", "D) Right-click > Copy Slide"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you add slide numbers to all slides?",
+                    options: ["A) Home > Slide Number", "B) Insert > Slide Number > Apply to All", "C) Design > Slide Number", "D) View > Slide Number"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Where is the option to add animation to an object?",
+                    options: ["A) Insert > Animation", "B) Animations > Custom Animation", "C) Design > Animation", "D) Slide Show > Animation"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What is 'slide transition'?",
+                    options: ["A) Animation between slides", "B) Changing slide layout", "C) Duplicating slides", "D) Inserting a new slide"],
+                    correctAnswer: 0
+                },
+                {
+                    question: "How do you set a slide to advance automatically after a set time?",
+                    options: ["A) Animations tab > Advance Slide > After [time]", "B) Slide Show > Set Up Show", "C) Design > Timing", "D) Insert > Timing"],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Where do you create a custom slide show?",
+                    options: ["A) Home > Custom Show", "B) Slide Show > Custom Slide Show", "C) Animations > Custom Show", "D) View > Custom Show"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What is the purpose of a custom slide show?",
+                    options: ["A) To add animations", "B) To show selected slides in a specific order", "C) To change slide layout", "D) To insert charts"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you set a presentation to loop continuously?",
+                    options: ["A) Slide Show > Set Up Show > Loop continuously until 'Esc'", "B) Animations > Loop", "C) Design > Loop Show", "D) View > Loop Presentation"],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Which file type allows a presentation to start automatically when double-clicked?",
+                    options: ["A) PowerPoint Presentation (.pptx)", "B) PowerPoint Show (.ppsx)", "C) PDF (.pdf)", "D) Word Document (.docx)"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which view is best for rearranging slides?",
+                    options: ["A) Normal View", "B) Slide Sorter View", "C) Slide Show View", "D) Notes Page View"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Where is the 'Format Painter' tool located?",
+                    options: ["A) Home tab", "B) Insert tab", "C) Design tab", "D) Animations tab"],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Which option is used to align text within a text box?",
+                    options: ["A) Home > Align Text", "B) Insert > Align", "C) Design > Alignment", "D) View > Align"],
+                    correctAnswer: 0
+                },
+                {
+                    question: "How do you insert a SmartArt graphic?",
+                    options: ["A) Home > SmartArt", "B) Insert > SmartArt", "C) Design > SmartArt", "D) Animations > SmartArt"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What does the 'Reset' button do in the Slide Layout menu?",
+                    options: ["A) Deletes the slide", "B) Restores the slide's original layout and placeholders", "C) Changes the slide background", "D) Removes all text"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which keyboard shortcut starts the slide show from the beginning?",
+                    options: ["A) F1", "B) F5", "C) Ctrl + S", "D) Alt + F5"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you insert a hyperlink in PowerPoint?",
+                    options: ["A) Home > Hyperlink", "B) Insert > Hyperlink", "C) Design > Link", "D) Animations > Hyperlink"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which tab allows you to add a photo album?",
+                    options: ["A) Home", "B) Insert", "C) Design", "D) View"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "What is the purpose of the 'Reuse Slides' option?",
+                    options: ["A) To duplicate slides", "B) To insert slides from another presentation", "C) To reset slide layouts", "D) To apply animations"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which option hides a slide during a presentation?",
+                    options: ["A) Delete the slide", "B) Right-click slide > Hide Slide", "C) Slide Show > Hide", "D) Design > Hide Slide"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you add a header to slides?",
+                    options: ["A) Insert > Header & Footer", "B) Home > Header", "C) Design > Header", "D) View > Header"],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Which view allows you to see speaker notes?",
+                    options: ["A) Normal View", "B) Notes Page View", "C) Slide Sorter View", "D) Reading View"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you change the slide size (e.g., to widescreen)?",
+                    options: ["A) Home > Slide Size", "B) Design > Slide Size", "C) Insert > Slide Size", "D) View > Slide Size"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Where can you find the 'Arrange' options for overlapping objects?",
+                    options: ["A) Home > Arrange", "B) Format tab (under Drawing Tools)", "C) Insert > Arrange", "D) Design > Arrange"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you apply a theme to all slides?",
+                    options: ["A) Right-click theme > Apply to All", "B) Design tab > click on a theme", "C) Insert > Theme", "D) View > Apply Theme"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which option lets you record narration for a slide show?",
+                    options: ["A) Insert > Narration", "B) Slide Show > Record Narration", "C) Animations > Narration", "D) Review > Narrate"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you insert a video from a file?",
+                    options: ["A) Home > Video", "B) Insert > Video", "C) Design > Media", "D) Animations > Video"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Which feature allows you to create a summary slide of all titles?",
+                    options: ["A) Home > Summary Slide", "B) Insert > Summary", "C) Design > Agenda", "D) Slide Show > Summary"],
+                    correctAnswer: 0
+                },
+                {
+                    question: "How do you add a border to a picture?",
+                    options: ["A) Format tab (under Picture Tools) > Picture Border", "B) Home > Border", "C) Insert > Border", "D) Design > Border"],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Where is the 'Selection Pane' located?",
+                    options: ["A) Home > Selection Pane", "B) Format tab > Selection Pane", "C) View > Selection Pane", "D) Design > Selection Pane"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you change the order of animation effects?",
+                    options: ["A) Drag and drop in the Animation Pane", "B) Right-click effect > Move Earlier/Later", "C) Both A and B", "D) Neither A nor B"],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Which option lets you rehearse timings for a presentation?",
+                    options: ["A) Slide Show > Rehearse Timings", "B) Animations > Rehearse", "C) Design > Timing Rehearsal", "D) View > Rehearse"],
+                    correctAnswer: 0
+                },
+                {
+                    question: "How do you save a presentation as a video?",
+                    options: ["A) File > Export > Create a Video", "B) File > Save As > Video", "C) Insert > Video > Save as Video", "D) Slide Show > Create Video"],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Which keyboard shortcut opens the 'Font' dialog box?",
+                    options: ["A) Ctrl + F", "B) Ctrl + Shift + F", "C) Ctrl + D", "D) Alt + F"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Where can you add a 'Section' to organize slides?",
+                    options: ["A) Home > Section", "B) Right-click between slides > Add Section", "C) Insert > Section", "D) View > Section"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you apply the same transition to all slides?",
+                    options: ["A) Animations > Transition > Apply to All", "B) Design > Transition to All", "C) Slide Show > Apply Transition", "D) Right-click > Apply to All Slides"],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Which option allows you to compare and merge presentations?",
+                    options: ["A) Review > Compare", "B) File > Compare and Merge", "C) View > Compare", "D) Slide Show > Merge"],
+                    correctAnswer: 1
+                },
+                {
+                    question: "How do you insert a screenshot?",
+                    options: ["A) Home > Screenshot", "B) Insert > Screenshot", "C) Design > Screenshot", "D) View > Screenshot"],
+                    correctAnswer: 1
+                }
+            ];
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("Computer Science Quiz Website Loaded");
+            
+            // Add hover effects to lecture cards
+            const lectureCards = document.querySelectorAll('.lecture-card');
+            lectureCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
